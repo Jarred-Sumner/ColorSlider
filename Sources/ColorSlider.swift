@@ -102,6 +102,9 @@ public class ColorSlider: UIControl {
 		}
 	}
 	
+	public var hitTestPadding = CGFloat(-60)
+	public var hitTestMinimumSideLength = CGFloat(44)
+	
 	/// The background gradient view.
 	public let gradientView: GradientView
 	
@@ -290,8 +293,8 @@ extension ColorSlider {
 		
 		// Determine the delta between the width / height and 44, the iOS HIG minimum tap target size.
 		// If a side is already longer than 44, add 10 points of padding to either side of the slider along that axis.
-		let minimumSideLength: CGFloat = 44
-		let padding: CGFloat = -20
+		let minimumSideLength = hitTestMinimumSideLength
+		let padding: CGFloat = hitTestPadding
 		let dx: CGFloat = min(bounds.width - minimumSideLength, padding)
 		let dy: CGFloat = min(bounds.height - minimumSideLength, padding)
 		
